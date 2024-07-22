@@ -5,12 +5,12 @@ const jwtProvider = require("../config/jwtProvider.js");
 const createUser = async (userData) => {
   try {
     let { firstName, lastName, email, password } = userData;
-    console.log(firstName);
-    console.log(lastName);
-    console.log(email);
-    console.log(password);
-    
-    const user = await User.findOne({ email });
+    // console.log(firstName);
+    // console.log(lastName);
+    // console.log(email);
+    // console.log(password);
+
+    let user = await User.findOne({ email });
     if (user) {
       throw new Error("User already exist with email:", email);
     }
@@ -19,13 +19,14 @@ const createUser = async (userData) => {
     // const hashedPassword = await bcrypt.hash(password, salt);
     // const user = await User.create({firstName,lastName,email,hashedPassword});
 
-    bcrypt.hash(password, 8, async function (err, hash) {
+    const hash = await bcrypt.hash(password, 8);
 
-      user = await User.create({
-          firstName,lastName,email,
-          password: hash
-      })
-  });
+    user = await User.create({
+      firstName,
+      lastName,
+      email,
+      password: hash,
+    });
 
     console.log("Created User", user);
     return user;
@@ -37,10 +38,12 @@ const createUser = async (userData) => {
 
 const findUserById = async (userId) => {
   try {
-    const user = await User.findById(userId).populate("address");
+    const user = await User.findById(userId)
+    // .populate("address");
     if (!user) {
       throw new Error("User not found with id:", userId);
     }
+    return user;
   } catch (error) {
     throw new Error(error.message);
   }
@@ -52,6 +55,7 @@ const getUserByEmail = async (email) => {
     if (!user) {
       throw new Error("User not found with email:", email);
     }
+    return user;
   } catch (error) {
     throw new Error(error.message);
   }

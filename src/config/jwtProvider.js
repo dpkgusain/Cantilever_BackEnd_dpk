@@ -1,4 +1,4 @@
-const   JWT = require("jsonwebtoken")
+const jwt = require("jsonwebtoken")
 
 const SECRET_KEY = "dksjgvnngioa hovienoivnwoai"
 

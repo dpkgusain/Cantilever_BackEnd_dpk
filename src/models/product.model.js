@@ -13,11 +13,11 @@ const productSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  dicountedPrice: {
+  discountedPrice: {
     type: Number,
-    // required: true,
+    required: true,
   },
-  dicountedPresent: {
+  discountPresent: {
     type: Number,
     // required: true,
   },

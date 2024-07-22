@@ -16,6 +16,18 @@ const authRouters = require("./routes/auth.route.js")
 app.use("/auth", authRouters)
 
 const userRouters = require("./routes/user.route.js")
-app.use("/users", userRouters)
+app.use("/api/users", userRouters)
+
+const productRouter = require("./routes/product.route.js")
+app.use("/api/products", productRouter)
+
+const adminProductRouter = require("./routes/adminProduct.route.js")
+app.use("/api/admin/products", adminProductRouter)
+
+const reviewRouters = require("./routes/review.route.js")
+app.use("/api/reviews", reviewRouters)
+
+const ratingRouters = require("./routes/rating.route.js")
+app.use("/api/ratings", ratingRouters)
 
 module.exports = app;

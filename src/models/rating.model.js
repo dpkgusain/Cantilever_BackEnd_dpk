@@ -13,7 +13,7 @@ const ratingSchema = new mongoose.Schema({
   },
   ratings: [
     {
-      type: number,
+      type: Number,
       required: true,
     },
   ],
